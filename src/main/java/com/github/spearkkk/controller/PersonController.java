@@ -16,11 +16,11 @@ public class PersonController {
 
   @GetMapping(value = "/people")
   public List<PersonResponse> getPeople() {
-    return responseMapper.map(personService.findAll());
+    return responseMapper.map(personService.findAllPeople());
   }
 
   @GetMapping(value = "/people/{id}")
   public PersonResponse getPerson(@PathVariable Long id) {
-    return responseMapper.map(personService.findBy(id));
+    return responseMapper.map(personService.findPersonBy(id));
   }
 }

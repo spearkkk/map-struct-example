@@ -7,6 +7,6 @@ import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface PersonResponseMapper {
-    PersonResponse map(PersonDTO entity);
-    List<PersonResponse> map(List<PersonDTO> entities);
+    PersonResponse map(PersonDTO dto);
+    List<PersonResponse> map(List<PersonDTO> dtos);
 }
