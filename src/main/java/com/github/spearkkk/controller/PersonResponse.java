@@ -9,6 +9,6 @@ import lombok.Value;
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PersonResponse {
-    Long id;
-    String name;
+  Long id;
+  String name;
 }

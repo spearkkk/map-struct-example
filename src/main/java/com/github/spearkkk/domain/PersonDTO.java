@@ -8,7 +8,7 @@ import lombok.Value;
 @Value
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
-public class Person {
-  Long id;
-  String name;
+public class PersonDTO {
+    Long id;
+    String name;
 }

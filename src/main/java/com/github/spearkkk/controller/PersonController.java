@@ -11,16 +11,16 @@ import java.util.List;
 @RequiredArgsConstructor
 @RestController
 public class PersonController {
-    private final PersonService personService;
-    private final PersonResponseMapper responseMapper;
+  private final PersonService personService;
+  private final PersonResponseMapper responseMapper;
 
-    @GetMapping(value = "/people")
-    public List<PersonResponse> getPeople() {
-        return responseMapper.map(personService.findAll());
-    }
+  @GetMapping(value = "/people")
+  public List<PersonResponse> getPeople() {
+    return responseMapper.map(personService.findAll());
+  }
 
-    @GetMapping(value = "/people/{id}")
-    public PersonResponse getPerson(@PathVariable Long id) {
-        return responseMapper.map(personService.findBy(id));
-    }
+  @GetMapping(value = "/people/{id}")
+  public PersonResponse getPerson(@PathVariable Long id) {
+    return responseMapper.map(personService.findBy(id));
+  }
 }

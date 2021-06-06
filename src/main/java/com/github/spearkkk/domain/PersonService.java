@@ -6,11 +6,11 @@ import java.util.List;
 
 @Service
 public class PersonService {
-    public List<Person> findAll() {
+    public List<PersonDTO> findAll() {
         return null;
     }
 
-    public Person findBy(Long id) {
+    public PersonDTO findBy(Long id) {
         return null;
     }
 }

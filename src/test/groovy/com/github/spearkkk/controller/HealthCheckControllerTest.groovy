@@ -7,11 +7,11 @@ import spock.lang.Specification
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class HealthCheckControllerTest extends Specification {
-    @Autowired
-    TestRestTemplate template
+  @Autowired
+  TestRestTemplate template
 
-    def "HealthCheckController should return welcome message."() {
-        expect:
-        template.getForObject("/hello", String.class) == "Hello, map_struct_example"
-    }
+  def "HealthCheckController should return welcome message."() {
+    expect:
+    template.getForObject("/hello", String.class) == "Hello, map_struct_example"
+  }
 }

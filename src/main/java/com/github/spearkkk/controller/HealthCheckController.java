@@ -6,11 +6,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class HealthCheckController {
-    @Value("${role}")
-    private String role;
+  @Value("${role}")
+  private String role;
 
-    @GetMapping(value = { "/", "/hello" })
-    public String hello() {
-        return "Hello, " + role;
-    }
+  @GetMapping(value = {"/", "/hello"})
+  public String hello() {
+    return "Hello, " + role;
+  }
 }
