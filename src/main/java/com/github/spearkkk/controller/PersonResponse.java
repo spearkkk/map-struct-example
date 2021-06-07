@@ -3,12 +3,14 @@ package com.github.spearkkk.controller;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
-import lombok.Value;
+import lombok.Getter;
+import lombok.ToString;
 
-@Value
+@ToString
+@Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 public class PersonResponse {
-  Long id;
-  String name;
+  private final Long id;
+  private final String name;
 }
