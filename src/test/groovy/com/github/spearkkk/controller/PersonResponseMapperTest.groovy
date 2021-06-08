@@ -8,7 +8,7 @@ import spock.lang.Specification
 class PersonResponseMapperTest extends Specification {
   def mapper = Mappers.getMapper(PersonResponseMapper.class)
 
-  def "Mapper should map PersonDTO to PersonResponse."() {
+  def "Mapper should map Person to PersonResponse."() {
     given:
     def person = Person.builder()
                        .id(1L)

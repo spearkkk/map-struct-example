@@ -19,16 +19,16 @@ class PersonControllerTest extends Specification {
 
   def "Controller should return people."() {
     given:
-    def dto1st = Stub(Person) {
+    def entity1st = Stub(Person) {
       getId() >> 1L
       getName() >> "NAME_1"
     }
-    def dto2nd = Stub(Person) {
+    def entity2nd = Stub(Person) {
       getId() >> 2L
       getName() >> "NAME_2"
     }
 
-    def people = [dto1st, dto2nd]
+    def people = [entity1st, entity2nd]
 
     when:
     def result = restTemplate.getForObject("/people", List<PersonResponse>.class)
@@ -40,7 +40,7 @@ class PersonControllerTest extends Specification {
 
   def "Controller should return person."() {
     given:
-    def dto1st = Stub(Person) {
+    def entity1st = Stub(Person) {
       getId() >> 1L
       getName() >> "NAME_1"
     }
@@ -49,7 +49,7 @@ class PersonControllerTest extends Specification {
     def result = restTemplate.getForObject("/people/1", PersonResponse.class)
 
     then:
-    1 * personService.findPersonBy(1L) >> dto1st
+    1 * personService.findPersonBy(1L) >> entity1st
     result.getId() == 1L
     result.getName() == "NAME_1"
   }
