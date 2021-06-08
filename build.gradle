@@ -40,6 +40,9 @@ dependencies {
     testImplementation 'org.codehaus.groovy:groovy-all:2.5.13'
     testImplementation 'org.spockframework:spock-core:2.0-groovy-3.0'
     testImplementation 'org.spockframework:spock-spring:2.0-groovy-3.0'
+
+    // To use Easy Random
+    testImplementation 'org.jeasy:easy-random-core:4.3.0'
 }
 
 test {

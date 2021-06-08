@@ -1,5 +1,6 @@
 package com.github.spearkkk.domain.person;
 
+import com.github.spearkkk.domain.BaseDatetime;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -14,14 +15,14 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@ToString
+@ToString(callSuper = true)
 @Getter
 @Builder
 @AllArgsConstructor(access = AccessLevel.PRIVATE)
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 @Table(name = "person")
 @Entity
-public class Person {
+public class Person extends BaseDatetime {
   @GeneratedValue(strategy = GenerationType.AUTO)
   @Id
   private Long id;

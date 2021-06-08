@@ -6,6 +6,8 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
+import java.time.LocalDateTime;
+
 @ToString
 @Getter
 @Builder
@@ -13,4 +15,6 @@ import lombok.ToString;
 public class PersonResponse {
   private final Long id;
   private final String name;
+  private final LocalDateTime createdAt;
+  private final LocalDateTime lastModifiedAt;
 }
