@@ -1,12 +1,12 @@
 package com.github.spearkkk.controller;
 
-import com.github.spearkkk.domain.PersonDTO;
+import com.github.spearkkk.domain.Person;
 import org.mapstruct.Mapper;
 
 import java.util.List;
 
 @Mapper(componentModel = "spring")
 public interface PersonResponseMapper {
-    PersonResponse map(PersonDTO dto);
-    List<PersonResponse> map(List<PersonDTO> dtos);
+    PersonResponse map(Person entity);
+    List<PersonResponse> map(List<Person> entities);
 }

@@ -1,6 +1,6 @@
 package com.github.spearkkk.controller
 
-import com.github.spearkkk.domain.PersonDTO
+import com.github.spearkkk.domain.Person
 import com.github.spearkkk.domain.PersonService
 import org.spockframework.spring.SpringSpy
 import org.springframework.beans.factory.annotation.Autowired
@@ -18,11 +18,11 @@ class PersonControllerTest extends Specification {
 
   def "Controller should return people."() {
     given:
-    def dto1st = Stub(PersonDTO) {
+    def dto1st = Stub(Person) {
       getId() >> 1L
       getName() >> "NAME_1"
     }
-    def dto2nd = Stub(PersonDTO) {
+    def dto2nd = Stub(Person) {
       getId() >> 2L
       getName() >> "NAME_2"
     }
@@ -39,7 +39,7 @@ class PersonControllerTest extends Specification {
 
   def "Controller should return person."() {
     given:
-    def dto1st = Stub(PersonDTO) {
+    def dto1st = Stub(Person) {
       getId() >> 1L
       getName() >> "NAME_1"
     }

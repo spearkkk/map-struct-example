@@ -1,13 +1,11 @@
 package com.github.spearkkk.domain
 
-import org.mapstruct.factory.Mappers
 import spock.lang.Specification
 
 class PersonServiceTest extends Specification {
   def repository = Mock(PersonRepository)
-  def mapper = Mappers.getMapper(PersonDTOMapper.class)
 
-  def service = new PersonService(repository, mapper)
+  def service = new PersonService(repository)
 
   def "Service should find all people."() {
     given:

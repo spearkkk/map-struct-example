@@ -9,15 +9,13 @@ import java.util.List;
 @Service
 public class PersonService {
     private final PersonRepository repository;
-    private final PersonDTOMapper mapper;
 
-    public List<PersonDTO> findAllPeople() {
-        return mapper.map(repository.findAll());
+    public List<Person> findAllPeople() {
+        return repository.findAll();
     }
 
-    public PersonDTO findPersonBy(Long id) {
+    public Person findPersonBy(Long id) {
         return repository.findById(id)
-                         .map(mapper::map)
                          .orElseThrow(() ->  new IllegalArgumentException("Cannot find object. id: " + id));
     }
 }

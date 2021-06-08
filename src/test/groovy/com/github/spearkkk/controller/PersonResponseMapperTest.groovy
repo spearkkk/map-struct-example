@@ -1,6 +1,6 @@
 package com.github.spearkkk.controller
 
-import com.github.spearkkk.domain.PersonDTO
+import com.github.spearkkk.domain.Person
 import org.mapstruct.factory.Mappers
 import spock.lang.Specification
 
@@ -9,13 +9,13 @@ class PersonResponseMapperTest extends Specification {
 
   def "Mapper should map PersonDTO to PersonResponse."() {
     given:
-    def dto = PersonDTO.builder()
+    def person = Person.builder()
                        .id(1L)
                        .name("NAME")
                        .build()
 
     when:
-    def result = mapper.map(dto)
+    def result = mapper.map(person)
 
     then:
     result.getId() == 1L
