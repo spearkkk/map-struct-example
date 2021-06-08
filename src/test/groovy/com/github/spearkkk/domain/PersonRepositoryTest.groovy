@@ -1,5 +1,7 @@
 package com.github.spearkkk.domain
 
+import com.github.spearkkk.domain.person.Person
+import com.github.spearkkk.domain.person.PersonRepository
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import spock.lang.Specification
@@ -36,8 +38,8 @@ class PersonRepositoryTest extends Specification {
   def "Repository should find data by ID."() {
     given:
     def person = Person.builder()
-                          .name("NAME_1")
-                          .build()
+                       .name("NAME_1")
+                       .build()
     def saved = repository.save(person)
     println(saved)
 

@@ -1,6 +1,7 @@
 package com.github.spearkkk.controller
 
-import com.github.spearkkk.domain.Person
+import com.github.spearkkk.controller.person.PersonResponseMapper
+import com.github.spearkkk.domain.person.Person
 import org.mapstruct.factory.Mappers
 import spock.lang.Specification
 

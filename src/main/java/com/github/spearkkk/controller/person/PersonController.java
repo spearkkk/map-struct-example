@@ -1,6 +1,6 @@
-package com.github.spearkkk.controller;
+package com.github.spearkkk.controller.person;
 
-import com.github.spearkkk.domain.PersonService;
+import com.github.spearkkk.domain.person.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;

@@ -1,7 +1,8 @@
 package com.github.spearkkk.controller
 
-import com.github.spearkkk.domain.Person
-import com.github.spearkkk.domain.PersonService
+import com.github.spearkkk.controller.person.PersonResponse
+import com.github.spearkkk.domain.person.Person
+import com.github.spearkkk.domain.person.PersonService
 import org.spockframework.spring.SpringSpy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest

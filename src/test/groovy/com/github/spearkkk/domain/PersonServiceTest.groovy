@@ -1,5 +1,8 @@
 package com.github.spearkkk.domain
 
+import com.github.spearkkk.domain.person.Person
+import com.github.spearkkk.domain.person.PersonRepository
+import com.github.spearkkk.domain.person.PersonService
 import spock.lang.Specification
 
 class PersonServiceTest extends Specification {

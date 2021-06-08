@@ -1,4 +1,4 @@
-package com.github.spearkkk.domain;
+package com.github.spearkkk.domain.person;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;

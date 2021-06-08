@@ -1,4 +1,4 @@
-package com.github.spearkkk.controller;
+package com.github.spearkkk.controller.person;
 
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;

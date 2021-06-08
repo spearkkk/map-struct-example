@@ -1,6 +1,6 @@
-package com.github.spearkkk.controller;
+package com.github.spearkkk.controller.person;
 
-import com.github.spearkkk.domain.Person;
+import com.github.spearkkk.domain.person.Person;
 import org.mapstruct.Mapper;
 
 import java.util.List;
