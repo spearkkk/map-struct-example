@@ -21,6 +21,8 @@ class PersonResponseMapperTest extends Specification {
     then:
     result.getId() == person.getId()
     result.getName() == person.getName()
+    result.getAddress().getPostCode() == person.getAddress().getPostCode()
+    result.getAddress().getStreetAddress() == person.getAddress().getStreetAddress()
     result.getCreatedAt() == person.getCreatedAt()
     result.getLastModifiedAt() == person.getLastModifiedAt()
   }

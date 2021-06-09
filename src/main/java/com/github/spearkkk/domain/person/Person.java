@@ -1,6 +1,7 @@
 package com.github.spearkkk.domain.person;
 
 import com.github.spearkkk.domain.BaseDatetime;
+import com.github.spearkkk.domain.person.address.Address;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,6 +10,7 @@ import lombok.NoArgsConstructor;
 import lombok.ToString;
 
 import javax.persistence.Column;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -28,4 +30,6 @@ public class Person extends BaseDatetime {
   private Long id;
   @Column(length = 100)
   private String name;
+  @Embedded
+  private Address address;
 }

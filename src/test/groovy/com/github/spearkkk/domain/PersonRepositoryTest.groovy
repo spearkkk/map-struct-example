@@ -2,9 +2,11 @@ package com.github.spearkkk.domain
 
 import com.github.spearkkk.domain.person.Person
 import com.github.spearkkk.domain.person.PersonRepository
+import com.github.spearkkk.domain.person.address.Address
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters
 import org.jeasy.random.FieldPredicates
+import org.jeasy.random.randomizers.text.StringRandomizer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing
@@ -13,22 +15,27 @@ import spock.lang.Specification
 import javax.transaction.Transactional
 import java.time.LocalDateTime
 
-@Transactional
 @EnableJpaAuditing
+@Transactional
 @SpringBootTest
 class PersonRepositoryTest extends Specification {
   def easyRandomParameters = new EasyRandomParameters()
-  .excludeField(FieldPredicates.named("createdAt")
-                    & FieldPredicates.inClass(BaseDatetime.class)
-                    & FieldPredicates.ofType(LocalDateTime.class))
-  .excludeField(FieldPredicates.named("lastModifiedAt")
-                    & FieldPredicates.inClass(BaseDatetime.class)
-                    & FieldPredicates.ofType(LocalDateTime.class))
-  .excludeField(FieldPredicates.named("id")
-                    & FieldPredicates.inClass(Person.class)
-                    & FieldPredicates.ofType(Long.class))
-  .stringLengthRange(1, 50)
-
+      .excludeField(FieldPredicates.named("createdAt")
+                        & FieldPredicates.inClass(BaseDatetime.class)
+                        & FieldPredicates.ofType(LocalDateTime.class))
+      .excludeField(FieldPredicates.named("lastModifiedAt")
+                        & FieldPredicates.inClass(BaseDatetime.class)
+                        & FieldPredicates.ofType(LocalDateTime.class))
+      .excludeField(FieldPredicates.named("id")
+                        & FieldPredicates.inClass(Person.class)
+                        & FieldPredicates.ofType(Long.class))
+      .randomize(FieldPredicates.named("name") & FieldPredicates.inClass(Person.class)
+                     & FieldPredicates.ofType(String.class), new StringRandomizer(100))
+      .randomize(FieldPredicates.named("postCode") & FieldPredicates.inClass(Address.class)
+                     & FieldPredicates.ofType(String.class), new StringRandomizer(10))
+      .randomize(FieldPredicates.named("streetAddress")
+                     & FieldPredicates.inClass(Address.class)
+                     & FieldPredicates.ofType(String.class), new StringRandomizer(255))
 
   def easyRandom = new EasyRandom(easyRandomParameters)
 
@@ -60,7 +67,6 @@ class PersonRepositoryTest extends Specification {
     def result = repository.findById(saved.getId())
 
     then:
-    println result
     result.isPresent()
     result.get() == saved
   }
