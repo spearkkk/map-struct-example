@@ -7,12 +7,14 @@ import org.jeasy.random.EasyRandomParameters
 import org.jeasy.random.FieldPredicates
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing
 import spock.lang.Specification
 
 import javax.transaction.Transactional
 import java.time.LocalDateTime
 
 @Transactional
+@EnableJpaAuditing
 @SpringBootTest
 class PersonRepositoryTest extends Specification {
   def easyRandomParameters = new EasyRandomParameters()
@@ -58,6 +60,7 @@ class PersonRepositoryTest extends Specification {
     def result = repository.findById(saved.getId())
 
     then:
+    println result
     result.isPresent()
     result.get() == saved
   }
