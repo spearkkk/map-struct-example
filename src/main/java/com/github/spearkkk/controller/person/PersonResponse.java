@@ -1,6 +1,7 @@
 package com.github.spearkkk.controller.person;
 
 import com.github.spearkkk.controller.person.address.AddressResponse;
+import com.github.spearkkk.controller.person.contact.ContactResponse;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -17,6 +18,7 @@ public class PersonResponse {
   private final Long id;
   private final String name;
   private final AddressResponse address;
+  private final ContactResponse contact;
   private final LocalDateTime createdAt;
   private final LocalDateTime lastModifiedAt;
 }

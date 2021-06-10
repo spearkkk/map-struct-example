@@ -23,6 +23,8 @@ class PersonResponseMapperTest extends Specification {
     result.getName() == person.getName()
     result.getAddress().getPostCode() == person.getAddress().getPostCode()
     result.getAddress().getStreetAddress() == person.getAddress().getStreetAddress()
+    result.getContact().getPhone() == person.getContact().getPhoneNumber()
+    result.getContact().getEmail() == person.getContact().getEmailAddress()
     result.getCreatedAt() == person.getCreatedAt()
     result.getLastModifiedAt() == person.getLastModifiedAt()
   }

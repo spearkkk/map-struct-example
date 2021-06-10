@@ -3,6 +3,7 @@ package com.github.spearkkk.domain
 import com.github.spearkkk.domain.person.Person
 import com.github.spearkkk.domain.person.PersonRepository
 import com.github.spearkkk.domain.person.address.Address
+import com.github.spearkkk.domain.person.contact.Contact
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters
 import org.jeasy.random.FieldPredicates
@@ -35,6 +36,11 @@ class PersonRepositoryTest extends Specification {
                      & FieldPredicates.ofType(String.class), new StringRandomizer(10))
       .randomize(FieldPredicates.named("streetAddress")
                      & FieldPredicates.inClass(Address.class)
+                     & FieldPredicates.ofType(String.class), new StringRandomizer(255))
+      .randomize(FieldPredicates.named("phoneNumber") & FieldPredicates.inClass(Contact.class)
+                     & FieldPredicates.ofType(String.class), new StringRandomizer(20))
+      .randomize(FieldPredicates.named("emailAddress")
+                     & FieldPredicates.inClass(Contact.class)
                      & FieldPredicates.ofType(String.class), new StringRandomizer(255))
 
   def easyRandom = new EasyRandom(easyRandomParameters)
