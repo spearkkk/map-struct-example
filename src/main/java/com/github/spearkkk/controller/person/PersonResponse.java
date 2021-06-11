@@ -21,4 +21,5 @@ public class PersonResponse {
   private final ContactResponse contact;
   private final LocalDateTime createdAt;
   private final LocalDateTime lastModifiedAt;
+  private final boolean isBirthday;
 }

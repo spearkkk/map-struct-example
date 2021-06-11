@@ -2,6 +2,7 @@ package com.github.spearkkk.domain.person;
 
 import com.github.spearkkk.domain.BaseDatetime;
 import com.github.spearkkk.domain.person.address.Address;
+import com.github.spearkkk.domain.person.birthday.Birthday;
 import com.github.spearkkk.domain.person.contact.Contact;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -35,4 +36,6 @@ public class Person extends BaseDatetime {
   private Address address;
   @Embedded
   private Contact contact;
+  @Embedded
+  private Birthday birthday;
 }
