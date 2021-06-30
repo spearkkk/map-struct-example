@@ -8,8 +8,6 @@ import lombok.Builder;
 import lombok.Getter;
 import lombok.ToString;
 
-import java.time.LocalDateTime;
-
 @ToString
 @Getter
 @Builder
@@ -19,7 +17,7 @@ public class PersonResponse {
   private final String name;
   private final AddressResponse address;
   private final ContactResponse contact;
-  private final LocalDateTime createdAt;
-  private final LocalDateTime lastModifiedAt;
+  private final String createdAt;
+  private final String lastModifiedAt;
   private final boolean isBirthday;
 }

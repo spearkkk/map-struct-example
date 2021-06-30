@@ -11,6 +11,7 @@ import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
 import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @ContextConfiguration(classes = [PersonResponseMapperImpl.class, BirthdayMapperImpl.class])
 class PersonResponseMapperTest extends Specification {
@@ -34,8 +35,8 @@ class PersonResponseMapperTest extends Specification {
     result.getContact().getPhone() == person.getContact().getPhoneNumber()
     result.getContact().getEmail() == person.getContact().getEmailAddress()
     !result.isBirthday()
-    result.getCreatedAt() == person.getCreatedAt()
-    result.getLastModifiedAt() == person.getLastModifiedAt()
+    result.getCreatedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getCreatedAt())
+    result.getLastModifiedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getLastModifiedAt())
   }
 
   def "Mapper should map Person to PersonResponse if today is birthday."() {
@@ -55,7 +56,7 @@ class PersonResponseMapperTest extends Specification {
     result.getContact().getPhone() == person.getContact().getPhoneNumber()
     result.getContact().getEmail() == person.getContact().getEmailAddress()
     result.isBirthday()
-    result.getCreatedAt() == person.getCreatedAt()
-    result.getLastModifiedAt() == person.getLastModifiedAt()
+    result.getCreatedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getCreatedAt())
+    result.getLastModifiedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getLastModifiedAt())
   }
 }

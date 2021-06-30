@@ -10,6 +10,8 @@ import org.springframework.boot.test.context.SpringBootTest
 import org.springframework.boot.test.web.client.TestRestTemplate
 import spock.lang.Specification
 
+import java.time.format.DateTimeFormatter
+
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PersonControllerTest extends Specification {
   def easyRandom = new EasyRandom()
@@ -46,7 +48,7 @@ class PersonControllerTest extends Specification {
     1 * personService.findPersonBy(1L) >> entity
     result.getId() == entity.getId()
     result.getName() == entity.getName()
-    result.getCreatedAt() == entity.getCreatedAt()
-    result.getLastModifiedAt() == entity.getLastModifiedAt()
+    result.getCreatedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(entity.getCreatedAt())
+    result.getLastModifiedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(entity.getLastModifiedAt())
   }
 }
