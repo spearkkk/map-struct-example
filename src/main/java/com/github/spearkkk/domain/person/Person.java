@@ -38,4 +38,6 @@ public class Person extends BaseDatetime {
   private Contact contact;
   @Embedded
   private Birthday birthday;
+  @Column(length = 20)
+  private String saidMommyAt;
 }

@@ -13,7 +13,8 @@ public interface PersonResponseMapper {
                @Mapping(source = "entity.contact.emailAddress", target = "contact.email"),
                @Mapping(source = "entity.birthday", target = "isBirthday"),
                @Mapping(target = "createdAt", dateFormat = "yyyy-MM-dd'T'HH:mm:ss"),
-               @Mapping(target = "lastModifiedAt", dateFormat = "yyyy-MM-dd'T'HH:mm:ss")})
+               @Mapping(target = "lastModifiedAt", dateFormat = "yyyy-MM-dd'T'HH:mm:ss"),
+               @Mapping(target = "saidMommyAt", dateFormat = "yyyy-MM-dd'T'HH:mm:ss")})
     PersonResponse map(Person entity);
     List<PersonResponse> map(List<Person> entities);
 }

@@ -6,6 +6,9 @@ import com.github.spearkkk.controller.person.PersonResponseMapperImpl
 import com.github.spearkkk.domain.person.Person
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters
+import org.jeasy.random.FieldPredicates
+import org.jeasy.random.randomizers.misc.ConstantRandomizer
+import org.jeasy.random.randomizers.text.StringRandomizer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
@@ -35,8 +38,10 @@ class PersonResponseMapperTest extends Specification {
     result.getContact().getPhone() == person.getContact().getPhoneNumber()
     result.getContact().getEmail() == person.getContact().getEmailAddress()
     !result.isBirthday()
-    result.getCreatedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getCreatedAt())
-    result.getLastModifiedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getLastModifiedAt())
+    result.getCreatedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+                                              .format(person.getCreatedAt())
+    result.getLastModifiedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+                                                   .format(person.getLastModifiedAt())
   }
 
   def "Mapper should map Person to PersonResponse if today is birthday."() {
@@ -56,7 +61,22 @@ class PersonResponseMapperTest extends Specification {
     result.getContact().getPhone() == person.getContact().getPhoneNumber()
     result.getContact().getEmail() == person.getContact().getEmailAddress()
     result.isBirthday()
-    result.getCreatedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getCreatedAt())
-    result.getLastModifiedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getLastModifiedAt())
+  }
+
+  def "Mapper should map Person to PersonResponse for `saidMommyAt` as LocalDateTime"() {
+    given:
+    def easyRandomParameters = new EasyRandomParameters()
+        .randomize(FieldPredicates.ofType(String.class) & FieldPredicates.named("saidMommyAt"),
+                   new ConstantRandomizer("2000-08-31T13:45:01"))
+    def easyRandom = new EasyRandom(easyRandomParameters)
+    def person = easyRandom.nextObject(Person.class)
+
+    when:
+    def result = mapper.map(person)
+
+    then:
+    result.getId() == person.getId()
+    DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
+                     .format(result.getSaidMommyAt()) == person.getSaidMommyAt()
   }
 }
