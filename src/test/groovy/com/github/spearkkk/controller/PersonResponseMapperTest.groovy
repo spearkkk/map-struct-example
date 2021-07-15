@@ -1,6 +1,7 @@
 package com.github.spearkkk.controller
 
 import com.github.spearkkk.controller.person.BirthdayMapperImpl
+import com.github.spearkkk.controller.person.CharacterMapperImpl
 import com.github.spearkkk.controller.person.PersonResponseMapper
 import com.github.spearkkk.controller.person.PersonResponseMapperImpl
 import com.github.spearkkk.domain.person.Person
@@ -8,7 +9,6 @@ import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters
 import org.jeasy.random.FieldPredicates
 import org.jeasy.random.randomizers.misc.ConstantRandomizer
-import org.jeasy.random.randomizers.text.StringRandomizer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
@@ -16,15 +16,16 @@ import spock.lang.Specification
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-@ContextConfiguration(classes = [PersonResponseMapperImpl.class, BirthdayMapperImpl.class])
+@ContextConfiguration(classes = [PersonResponseMapperImpl.class, BirthdayMapperImpl.class, CharacterMapperImpl.class])
 class PersonResponseMapperTest extends Specification {
-  def easyRandom = new EasyRandom()
-
   @Autowired
   PersonResponseMapper mapper
 
   def "Mapper should map Person to PersonResponse."() {
     given:
+    def easyRandomParameters = new EasyRandomParameters()
+        .excludeField(FieldPredicates.ofType(String.class) & FieldPredicates.named("saidMommyAt"))
+    def easyRandom = new EasyRandom(easyRandomParameters)
     def person = easyRandom.nextObject(Person.class)
 
     when:
@@ -47,6 +48,7 @@ class PersonResponseMapperTest extends Specification {
   def "Mapper should map Person to PersonResponse if today is birthday."() {
     given:
     def easyRandomParameters = new EasyRandomParameters().dateRange(LocalDate.now(), LocalDate.now())
+        .excludeField(FieldPredicates.ofType(String.class) & FieldPredicates.named("saidMommyAt"))
     def easyRandom = new EasyRandom(easyRandomParameters)
     def person = easyRandom.nextObject(Person.class)
 
@@ -63,7 +65,7 @@ class PersonResponseMapperTest extends Specification {
     result.isBirthday()
   }
 
-  def "Mapper should map Person to PersonResponse for `saidMommyAt` as LocalDateTime"() {
+  def "Mapper should map Person to PersonResponse for `saidMommyAt` as LocalDateTime."() {
     given:
     def easyRandomParameters = new EasyRandomParameters()
         .randomize(FieldPredicates.ofType(String.class) & FieldPredicates.named("saidMommyAt"),
@@ -78,5 +80,39 @@ class PersonResponseMapperTest extends Specification {
     result.getId() == person.getId()
     DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss")
                      .format(result.getSaidMommyAt()) == person.getSaidMommyAt()
+  }
+
+  def "Mapper should map Person to PersonResponse for `character` as String."() {
+    given:
+    def easyRandomParameters = new EasyRandomParameters()
+        .excludeField(FieldPredicates.ofType(String.class) & FieldPredicates.named("saidMommyAt"))
+        .randomize(FieldPredicates.ofType(Map.class) & FieldPredicates.named("character"),
+                   new ConstantRandomizer<Map<String, String>>(["key1": "value1", "key2": "value2"]))
+    def easyRandom = new EasyRandom(easyRandomParameters)
+    def person = easyRandom.nextObject(Person.class)
+
+    when:
+    def result = mapper.map(person)
+
+    then:
+    result.getId() == person.getId()
+    result.getCharacter() == """{"key1":"value1","key2":"value2"}"""
+  }
+
+  def "Mapper should map Person to PersonResponse for `character` as empty json if `character` is null."() {
+    given:
+    def easyRandomParameters = new EasyRandomParameters()
+        .excludeField(FieldPredicates.ofType(String.class) & FieldPredicates.named("saidMommyAt"))
+        .randomize(FieldPredicates.ofType(Map.class) & FieldPredicates.named("character"),
+                   new ConstantRandomizer<Map<String, String>>(null))
+    def easyRandom = new EasyRandom(easyRandomParameters)
+    def person = easyRandom.nextObject(Person.class)
+
+    when:
+    def result = mapper.map(person)
+
+    then:
+    result.getId() == person.getId()
+    result.getCharacter() == "{}"
   }
 }

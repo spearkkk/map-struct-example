@@ -23,4 +23,5 @@ public class PersonResponse {
   private final String lastModifiedAt;
   private final boolean isBirthday;
   private final LocalDateTime saidMommyAt;
+  private final String character;
 }

@@ -24,6 +24,10 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
     implementation 'org.springframework.boot:spring-boot-starter-web'
 
+    // To map json string to Map
+    // Refer to this: https://github.com/vladmihalcea/hibernate-types
+    implementation 'com.vladmihalcea:hibernate-types-55:2.12.1'
+
     // To use Map Struct and Lombok together,
     // Refer to this: https://github.com/mapstruct/mapstruct-examples/tree/master/mapstruct-lombok
     implementation 'org.projectlombok:lombok'

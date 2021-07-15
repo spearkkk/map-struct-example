@@ -4,6 +4,8 @@ import com.github.spearkkk.controller.person.PersonResponse
 import com.github.spearkkk.domain.person.Person
 import com.github.spearkkk.domain.person.PersonService
 import org.jeasy.random.EasyRandom
+import org.jeasy.random.EasyRandomParameters
+import org.jeasy.random.FieldPredicates
 import org.spockframework.spring.SpringSpy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -14,7 +16,9 @@ import java.time.format.DateTimeFormatter
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 class PersonControllerTest extends Specification {
-  def easyRandom = new EasyRandom()
+  def easyRandomParameters = new EasyRandomParameters()
+      .excludeField(FieldPredicates.ofType(String.class) & FieldPredicates.named("saidMommyAt"))
+  def easyRandom = new EasyRandom(easyRandomParameters)
 
   @Autowired
   TestRestTemplate restTemplate

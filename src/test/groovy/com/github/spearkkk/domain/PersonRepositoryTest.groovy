@@ -7,6 +7,7 @@ import com.github.spearkkk.domain.person.contact.Contact
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters
 import org.jeasy.random.FieldPredicates
+import org.jeasy.random.randomizers.misc.ConstantRandomizer
 import org.jeasy.random.randomizers.text.StringRandomizer
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
@@ -40,8 +41,13 @@ class PersonRepositoryTest extends Specification {
       .randomize(FieldPredicates.named("phoneNumber") & FieldPredicates.inClass(Contact.class)
                      & FieldPredicates.ofType(String.class), new StringRandomizer(20))
       .randomize(FieldPredicates.named("emailAddress")
-                     & FieldPredicates.inClass(Contact.class)
-                     & FieldPredicates.ofType(String.class), new StringRandomizer(255))
+                     & FieldPredicates.inClass(Contact.class) & FieldPredicates.ofType(String.class),
+                 new StringRandomizer(255))
+      .randomize(FieldPredicates.named("saidMommyAt") & FieldPredicates.inClass(Person.class)
+                     & FieldPredicates.ofType(String.class), new StringRandomizer(20))
+      .randomize(FieldPredicates.named("character") & FieldPredicates.inClass(Person.class)
+                     & FieldPredicates.ofType(Map.class),
+                 new ConstantRandomizer<Map<String, String>>(["key":"value"]))
 
   def easyRandom = new EasyRandom(easyRandomParameters)
 
