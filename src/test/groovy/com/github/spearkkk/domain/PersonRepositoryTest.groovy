@@ -48,6 +48,9 @@ class PersonRepositoryTest extends Specification {
       .randomize(FieldPredicates.named("character") & FieldPredicates.inClass(Person.class)
                      & FieldPredicates.ofType(Map.class),
                  new ConstantRandomizer<Map<String, String>>(["key":"value"]))
+      .randomize(FieldPredicates.named("favorites") & FieldPredicates.inClass(Person.class)
+                     & FieldPredicates.ofType(String.class),
+                 new ConstantRandomizer<String>("""{"food":"pizza","bald":false,"":""}"""))
 
   def easyRandom = new EasyRandom(easyRandomParameters)
 

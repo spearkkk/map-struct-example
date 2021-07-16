@@ -7,7 +7,7 @@ import org.mapstruct.Mappings;
 
 import java.util.List;
 
-@Mapper(componentModel = "spring", uses = { BirthdayMapper.class, CharacterMapper.class })
+@Mapper(componentModel = "spring", uses = { BirthdayMapper.class, CharacterMapper.class, FavoritesMapper.class })
 public interface PersonResponseMapper {
     @Mappings({@Mapping(source = "entity.contact.phoneNumber", target = "contact.phone"),
                @Mapping(source = "entity.contact.emailAddress", target = "contact.email"),

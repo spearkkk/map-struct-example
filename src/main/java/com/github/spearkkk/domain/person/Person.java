@@ -49,4 +49,6 @@ public class Person extends BaseDatetime {
   @Type(type = "json")
   @Column(columnDefinition = "json")
   private Map<String, String> character;
+  @Column(columnDefinition = "text")
+  private String favorites;
 }
