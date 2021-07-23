@@ -1,10 +1,5 @@
-package com.github.spearkkk.controller
+package com.github.spearkkk.controller.person
 
-import com.github.spearkkk.controller.person.BirthdayMapperImpl
-import com.github.spearkkk.controller.person.CharacterMapperImpl
-import com.github.spearkkk.controller.person.FavoritesMapperImpl
-import com.github.spearkkk.controller.person.PersonResponseMapper
-import com.github.spearkkk.controller.person.PersonResponseMapperImpl
 import com.github.spearkkk.domain.person.Person
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters

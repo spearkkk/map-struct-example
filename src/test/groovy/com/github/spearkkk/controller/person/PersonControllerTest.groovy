@@ -1,6 +1,5 @@
-package com.github.spearkkk.controller
+package com.github.spearkkk.controller.person
 
-import com.github.spearkkk.controller.person.PersonResponse
 import com.github.spearkkk.domain.person.Person
 import com.github.spearkkk.domain.person.PersonService
 import org.jeasy.random.EasyRandom

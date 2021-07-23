@@ -1,5 +1,8 @@
 package com.github.spearkkk.controller.person;
 
+import com.github.spearkkk.domain.company.Company;
+import com.github.spearkkk.domain.company.CompanyService;
+import com.github.spearkkk.domain.person.Person;
 import com.github.spearkkk.domain.person.PersonService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,15 +15,24 @@ import java.util.List;
 @RestController
 public class PersonController {
   private final PersonService personService;
-  private final PersonResponseMapper responseMapper;
+  private final PersonResponseMapper personResponseMapper;
+  private final CompanyService companyService;
+  private final PersonWithDetailResponseMapper personWithDetailResponseMapper;
 
   @GetMapping(value = "/people")
   public List<PersonResponse> getPeople() {
-    return responseMapper.map(personService.findAllPeople());
+    return personResponseMapper.map(personService.findAllPeople());
   }
 
   @GetMapping(value = "/people/{id}")
   public PersonResponse getPerson(@PathVariable Long id) {
-    return responseMapper.map(personService.findPersonBy(id));
+    return personResponseMapper.map(personService.findPersonBy(id));
+  }
+
+  @GetMapping(value = "/peaple/{id}/detail")
+  public PersonWithDetailResponse getPersonWithDetail(@PathVariable Long id) {
+    Person person = personService.findPersonBy(id);
+    Company company = companyService.findCompanyBy(person.getCompanyId());
+    return personWithDetailResponseMapper.map(person, company);
   }
 }

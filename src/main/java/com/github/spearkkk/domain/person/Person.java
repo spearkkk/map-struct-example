@@ -51,4 +51,6 @@ public class Person extends BaseDatetime {
   private Map<String, String> character;
   @Column(columnDefinition = "text")
   private String favorites;
+  @Column
+  private Long companyId;
 }
