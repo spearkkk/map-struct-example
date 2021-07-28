@@ -1,5 +1,7 @@
 package com.github.spearkkk.controller.person
 
+import com.github.spearkkk.domain.company.Company
+import com.github.spearkkk.domain.company.CompanyService
 import com.github.spearkkk.domain.person.Person
 import com.github.spearkkk.domain.person.PersonService
 import org.jeasy.random.EasyRandom
@@ -24,6 +26,8 @@ class PersonControllerTest extends Specification {
 
   @SpringSpy
   PersonService personService
+  @SpringSpy
+  CompanyService companyService
 
   def "Controller should return people."() {
     given:
@@ -53,5 +57,38 @@ class PersonControllerTest extends Specification {
     result.getName() == entity.getName()
     result.getCreatedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(entity.getCreatedAt())
     result.getLastModifiedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(entity.getLastModifiedAt())
+  }
+
+  def "Controller should return person with detail."() {
+    given:
+    def person = easyRandom.nextObject(Person.class)
+    def company = easyRandom.nextObject(Company.class)
+
+    when:
+    def result = restTemplate.getForObject("/people/1/detail", PersonWithDetailResponse.class)
+
+    then:
+    1 * personService.findPersonBy(1L) >> person
+    1 * companyService.findCompanyBy(person.getCompanyId()) >> company
+    result.getId() == person.getId()
+    result.getName() == person.getName()
+    result.getCompanyName() == company.getName()
+    result.getCreatedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getCreatedAt())
+    result.getLastModifiedAt() == DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss").format(person.getLastModifiedAt())
+  }
+
+  def "Controller should return person from."() {
+    given:
+    def person = easyRandom.nextObject(Person.class)
+    def company = easyRandom.nextObject(Company.class)
+
+    when:
+    def result = restTemplate.getForObject("/people/1/from", String.class)
+
+    then:
+    1 * personService.findPersonBy(1L) >> person
+    1 * companyService.findCompanyBy(person.getCompanyId()) >> company
+
+    result == "${person.getName()} from ${company.getName()}"
   }
 }

@@ -18,6 +18,7 @@ public class PersonController {
   private final PersonResponseMapper personResponseMapper;
   private final CompanyService companyService;
   private final PersonWithDetailResponseMapper personWithDetailResponseMapper;
+  private final PersonFromResponseMapper personFromResponseMapper;
 
   @GetMapping(value = "/people")
   public List<PersonResponse> getPeople() {
@@ -29,10 +30,18 @@ public class PersonController {
     return personResponseMapper.map(personService.findPersonBy(id));
   }
 
-  @GetMapping(value = "/peaple/{id}/detail")
+  @GetMapping(value = "/people/{id}/detail")
   public PersonWithDetailResponse getPersonWithDetail(@PathVariable Long id) {
     Person person = personService.findPersonBy(id);
     Company company = companyService.findCompanyBy(person.getCompanyId());
     return personWithDetailResponseMapper.map(person, company);
+  }
+
+  @GetMapping(value = "/people/{id}/from")
+  public String getPersonFrom(@PathVariable Long id) {
+    Person person = personService.findPersonBy(id);
+    Company company = companyService.findCompanyBy(person.getCompanyId());
+
+    return personFromResponseMapper.map(person, company);
   }
 }
