@@ -24,7 +24,7 @@ class PersonWithDetailResponseMapperTest extends Specification {
     def company = easyRandom.nextObject(Company.class)
 
     when:
-    def result = mapper.map(person, company)
+    def result = mapper.map(person, company.getName())
 
     then:
     result.getId() == person.getId()

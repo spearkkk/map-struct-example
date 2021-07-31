@@ -34,7 +34,7 @@ public class PersonController {
   public PersonWithDetailResponse getPersonWithDetail(@PathVariable Long id) {
     Person person = personService.findPersonBy(id);
     Company company = companyService.findCompanyBy(person.getCompanyId());
-    return personWithDetailResponseMapper.map(person, company);
+    return personWithDetailResponseMapper.map(person, company.getName());
   }
 
   @GetMapping(value = "/people/{id}/from")
