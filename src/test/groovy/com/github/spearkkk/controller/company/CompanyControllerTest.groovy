@@ -4,6 +4,7 @@ import com.github.spearkkk.domain.company.Company
 import com.github.spearkkk.domain.company.CompanyService
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters
+import org.jeasy.random.FieldPredicates
 import org.spockframework.spring.SpringSpy
 import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.boot.test.context.SpringBootTest
