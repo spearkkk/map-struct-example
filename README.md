@@ -1,7 +1,5 @@
 # Map Struct
 
-# blog/develop/java
-
 현재까지 entity -> dto, dto -> entity, dto -> dto 매핑작업을 생성자나 빌더를 이용해서 작업을 해왔다. 사실대로 말하면 계층(layer)에 따른 dto를 따로 두지 않고 entity를
 그대로 사용한 경우가 많았다. 어디서부터 잘못되어온 것인지는 몰라도 모든 계층에서 entity를 직접 참조하지 않도록 하는 것이 목표였다.  
 그렇게 수 많은 entity와 각 계층마다 사용하는 dto를 따로 두고 매핑작업을 진행하려고 했다. 문득 1~2년차 때, 누군가가 사용했던 Model Mapper가 생각났다. 그리고 이전에 무심코
