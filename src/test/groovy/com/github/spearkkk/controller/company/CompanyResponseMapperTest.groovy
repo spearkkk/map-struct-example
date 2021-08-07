@@ -1,6 +1,6 @@
 package com.github.spearkkk.controller.company
 
-
+import com.github.spearkkk.controller.util.mapper.BaseDatetimeMapperImpl
 import com.github.spearkkk.domain.company.Company
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters
@@ -10,7 +10,7 @@ import spock.lang.Specification
 
 import java.time.format.DateTimeFormatter
 
-@ContextConfiguration(classes = CompanyResponseMapperImpl.class)
+@ContextConfiguration(classes = [CompanyResponseMapperImpl.class, BaseDatetimeMapperImpl.class])
 class CompanyResponseMapperTest extends Specification {
   @Autowired
   CompanyResponseMapper mapper

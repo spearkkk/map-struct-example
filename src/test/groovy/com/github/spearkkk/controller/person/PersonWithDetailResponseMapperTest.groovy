@@ -1,5 +1,6 @@
 package com.github.spearkkk.controller.person
 
+import com.github.spearkkk.controller.util.mapper.BaseDatetimeMapperImpl
 import com.github.spearkkk.domain.company.Company
 import com.github.spearkkk.domain.person.Person
 import org.jeasy.random.EasyRandom
@@ -9,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.test.context.ContextConfiguration
 import spock.lang.Specification
 
-@ContextConfiguration(classes = [PersonWithDetailResponseMapperImpl.class, BirthdayMapperImpl.class, CharacterMapperImpl.class, FavoritesMapperImpl.class])
+@ContextConfiguration(classes = [PersonWithDetailResponseMapperImpl.class, BirthdayMapperImpl.class, CharacterMapperImpl.class, FavoritesMapperImpl.class, BaseDatetimeMapperImpl.class])
 class PersonWithDetailResponseMapperTest extends Specification {
   @Autowired
   PersonWithDetailResponseMapper mapper
