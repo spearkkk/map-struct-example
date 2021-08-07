@@ -1,5 +1,7 @@
 package com.github.spearkkk.controller.person
 
+
+import com.github.spearkkk.controller.util.mapper.BaseDatetimeMapperImpl
 import com.github.spearkkk.domain.person.Person
 import org.jeasy.random.EasyRandom
 import org.jeasy.random.EasyRandomParameters
@@ -12,7 +14,7 @@ import spock.lang.Specification
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
 
-@ContextConfiguration(classes = [PersonResponseMapperImpl.class, BirthdayMapperImpl.class, CharacterMapperImpl.class, FavoritesMapperImpl.class])
+@ContextConfiguration(classes = [PersonResponseMapperImpl.class, BirthdayMapperImpl.class, CharacterMapperImpl.class, FavoritesMapperImpl.class, BaseDatetimeMapperImpl.class])
 class PersonResponseMapperTest extends Specification {
   @Autowired
   PersonResponseMapper mapper
